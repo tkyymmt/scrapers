@@ -32,6 +32,7 @@ for elem in elems:
     product_url = elem.get_attribute('href')
     product_id = re.search(r'm\d+', product_url)
     edit_url = 'https://www.mercari.com/jp/sell/edit/' + product_id.group()
+
     if 10 <= int(likes.text):
         big_discount_list.append(edit_url)
     else:
@@ -55,7 +56,7 @@ for edit_url in edit_url_list:
     time.sleep(3)
 
 
-for edit_url in big_discount_list
+for edit_url in big_discount_list:
     driver.get(edit_url)
     time.sleep(1)
 
