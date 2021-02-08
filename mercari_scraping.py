@@ -17,6 +17,7 @@ listing_list = driver.find_element_by_id('mypage-tab-transaction-now')
 elems = listing_list.find_elements_by_tag_name('a')
 edit_url_list = []
 big_discount_list = []
+title_list = []
 
 
 for elem in elems:
@@ -25,14 +26,16 @@ for elem in elems:
         continue
 
     item_title = elem.find_element_by_class_name('mypage-item-text')
-    likes = elem.find_element_by_tag_name('span')
-    if 10 <= int(likes.text) and  '【値下げ】' in item_title.text:
+    if item_title.text in title_list or '【値下げ】' in item_title.text:
         continue
+
+    title_list.append(item_title)
 
     product_url = elem.get_attribute('href')
     product_id = re.search(r'm\d+', product_url)
     edit_url = 'https://www.mercari.com/jp/sell/edit/' + product_id.group()
 
+    likes = elem.find_element_by_tag_name('span')
     if 10 <= int(likes.text):
         big_discount_list.append(edit_url)
     else:
@@ -73,7 +76,7 @@ for edit_url in big_discount_list:
 
     sell_price.clear()
     time.sleep(1)
-    sell_price.send_keys(str(new_price))
+    sell_price.send_keys(str(int(new_price)))
     time.sleep(1)
 
     submit_button = driver.find_element_by_xpath('//*[@id="sell-container"]/div/div/form[2]/div/button')
