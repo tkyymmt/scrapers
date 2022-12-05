@@ -22,12 +22,6 @@ jobs:
         EMAIL: ${{secrets.EMAIL}}
         PASSWORD: ${{secrets.PASSWORD}}
         DISCORD_WEBHOOK_URL: ${{secrets.DISCORD_WEBHOOK_URL}}
-        #git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        #git config --local user.name "github-actions[bot]"
-        #git add libeworks/notified_jobs.txt
-        #git clean -df
-        #git commit -m "append notified jobs"
-        #git push
           
       run: |
         pip install get-chrome-driver --upgrade
