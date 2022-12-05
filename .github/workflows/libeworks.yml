@@ -16,20 +16,25 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    - name: Installed package list
-      run: apt list --installed
-    - name: Remove Chrome
-      run: sudo apt purge google-chrome-stable
     
-    # Need to fetch reqs if needed
-    - name: Installing all necessary packages
-      run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay requests
-    - name: Install xvfb
-      run: sudo apt-get install xvfb
+    
+    #- name: Installed package list
+      #run: apt list --installed
+    #- name: Remove Chrome
+      #run: sudo apt purge google-chrome-stable
+    
+    ## Need to fetch reqs if needed
+    #- name: Installing all necessary packages
+      #run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay requests
+    #- name: Install xvfb
+      #run: sudo apt-get install xvfb
 
     - name: Run libeworks
       env:
         EMAIL: ${{secrets.EMAIL}}
         PASSWORD: ${{secrets.PASSWORD}}
         DISCORD_WEBHOOK_URL: ${{secrets.DISCORD_WEBHOOK_URL}}
-      run: python3 libeworks.py
+      run: |
+        pip install get-chrome-driver --upgrade
+        pip install selenium requests
+        python3 libeworks.py
