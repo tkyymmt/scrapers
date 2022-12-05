@@ -25,4 +25,4 @@ jobs:
       run: |
         pip install get-chrome-driver --upgrade
         pip install selenium requests
-        python3 libeworks.py
+        python3 libeworks/libeworks.py
