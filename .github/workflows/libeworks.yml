@@ -31,6 +31,7 @@ jobs:
         then
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git clean -df
           git add .
           git commit -m "Update"
           git push
