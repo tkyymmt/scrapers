@@ -1,29 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 
 import time
 import requests
 import os
-
-
-#from selenium.webdriver.chrome.service import Service
-#import chromedriver_autoinstaller
-#from pyvirtualdisplay import Display
-#display = Display(visible=0, size=(800, 800))  
-#display.start()
-#chromedriver_autoinstaller.install()
-#chrome_options = webdriver.ChromeOptions()    
-#options = [
-   #"--window-size=1200,1200",
-    #"--ignore-certificate-errors"
-    ##"--headless",
-#]
-#for option in options:
-    #chrome_options.add_argument(option)
-
-    
-#driver = webdriver.Chrome(options = chrome_options)
 
 from get_chrome_driver import GetChromeDriver
 get_driver = GetChromeDriver()
@@ -31,7 +11,6 @@ get_driver.install()
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 driver = webdriver.Chrome(options=options)
-
 
 
 def signin_to_libecity():
@@ -45,6 +24,7 @@ def signin_to_libecity():
     password_form.send_keys(password)
     login_button = driver.find_element(By.XPATH, "//button[@type='button']")
     login_button.click()
+    print('signing in libecity')
     time.sleep(3)
 
 def search_new_jobs():
@@ -59,6 +39,7 @@ def search_new_jobs():
     new_job_urls = []
     search_words = ['開発', 'エンジニア']
     search_url = 'https://works.libecity.com/search?'
+    print('searching new jobs')
     try:
         for word in search_words:
             query_param = 'keyword=' + word
@@ -74,10 +55,9 @@ def search_new_jobs():
                     continue
                 new_job_urls.append(job_url)
     except:
-        print('Some exception has occured while searching jobs')
+        print('Some exception has occured while searching new jobs')
     
     return new_job_urls
-
 
 # notify me new jobs
 def notify_me(new_job_urls):
@@ -86,9 +66,9 @@ def notify_me(new_job_urls):
     payload = {
         "content"       : new_job_urls_str,
     }
+    print('sending notification to Discord')
     res = requests.post(webhook_url, json=payload)
     print(res.status_code)
-
 
 def main():
     signin_to_libecity()

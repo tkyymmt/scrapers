@@ -17,18 +17,6 @@ jobs:
       with:
         python-version: '3.10'
     
-    
-    #- name: Installed package list
-      #run: apt list --installed
-    #- name: Remove Chrome
-      #run: sudo apt purge google-chrome-stable
-    
-    ## Need to fetch reqs if needed
-    #- name: Installing all necessary packages
-      #run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay requests
-    #- name: Install xvfb
-      #run: sudo apt-get install xvfb
-
     - name: Run libeworks
       env:
         EMAIL: ${{secrets.EMAIL}}
