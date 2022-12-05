@@ -1,3 +1,5 @@
+name: Notify New Jobs
+
 on:
   workflow_dispatch:
 
@@ -18,12 +20,22 @@ jobs:
       run: apt list --installed
     - name: Remove Chrome
       run: sudo apt purge google-chrome-stable
-    - name: Remove default Chromium
-      run: sudo apt purge chromium-browser
-    - name: Install a new Chromium
-      run: sudo apt install -y chromium-browser
-    - name: Install all necessary packages
-      run: pip install requests beautifulsoup4 pandas webdriver-manager selenium
+    #- name: Remove default Chromium
+    #  run: sudo apt purge chromium-browser
+    
+    # Need to fetch reqs if needed
+    - name: Installing all necessary packages
+      run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay requests
+    - name: Install xvfb
+      run: sudo apt-get install xvfb
+
+
+
+
+    #- name: Install a new Chromium
+      #run: sudo apt install -y chromium-browser
+    #- name: Install all necessary packages
+      #run: pip install requests beautifulsoup4 pandas webdriver-manager selenium
     - name: Run libeworks
       env:
         EMAIL: ${{secrets.EMAIL}}
