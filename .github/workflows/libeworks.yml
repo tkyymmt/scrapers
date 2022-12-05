@@ -26,3 +26,8 @@ jobs:
         pip install get-chrome-driver --upgrade
         pip install selenium requests
         python3 libeworks/libeworks.py
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add libeworks/notified_jobs.txt
+        git commit -m "append notified jobs"
+        git push
