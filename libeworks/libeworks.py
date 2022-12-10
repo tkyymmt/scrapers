@@ -93,6 +93,7 @@ def notify_me(new_job_urls):
 
 def append_notified_jobs(new_job_urls):
     with open(notified_jobs_file, 'a') as f:
+        f.write('\n')
         newline_new_job_urls = '\n'.join(new_job_urls)
         f.write(newline_new_job_urls)
     
