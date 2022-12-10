@@ -24,7 +24,7 @@ def signin_to_libecity():
     login_button = driver.find_element(By.XPATH, "//button[@type='button']")
     login_button.click()
     print('Signing in libecity')
-    time.sleep(3)
+    time.sleep(5)
 
 def get_search_words():
     search_words = []
