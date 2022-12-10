@@ -15,6 +15,7 @@ driver = webdriver.Chrome(options=options)
 def signin_to_libecity():
     signin_url = 'https://libecity.com/signin'
     driver.get(signin_url)
+    time.sleep(3)
     email_form = driver.find_element(By.XPATH, "//input[@placeholder='メールアドレス']")
     password_form = driver.find_element(By.XPATH, "//input[@type='password']")
     email = os.environ['EMAIL']
@@ -24,7 +25,7 @@ def signin_to_libecity():
     login_button = driver.find_element(By.XPATH, "//button[@type='button']")
     login_button.click()
     print('Signing in libecity')
-    time.sleep(5)
+    time.sleep(3)
 
 def get_search_words():
     search_words = []
